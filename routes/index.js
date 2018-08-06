@@ -41,7 +41,7 @@ exports = module.exports = nextApp => keystoneApp => {
 		const JobPosition = keystone.list('JobPosition');
 		JobPosition.model
 			.find()
-			.where('state', 'applied')
+			.where('status', 'applied')
 			.sort('-appliedDate')
 			.exec(function (err, results) {
 				if (err) throw err;
