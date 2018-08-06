@@ -37,6 +37,18 @@ exports = module.exports = nextApp => keystoneApp => {
 			});
 	});
 
+	keystoneApp.get('/api/jobpositions', (req,res, next) => {
+		const JobPosition = keystone.list('JobPosition');
+		JobPosition.model
+			.find()
+			.where('state', 'applied')
+			.sort('-appliedDate')
+			.exec(function (err, results) {
+				if (err) throw err;
+				res.json(results);
+			});
+	});
+
 	keystoneApp.get('*', (req, res) => {
 		return handle(req, res);
 	});

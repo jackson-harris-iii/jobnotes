@@ -4,8 +4,8 @@ import axios from 'axios';
 class App extends Component {
 
     static async getInitialProps() {
-        let response = await axios.get('http://localhost:3000/api/posts');
-        return { posts: response.data };
+        let response = await axios.get('http://localhost:3000/api/jobpositions');
+        return { jobs: response.data };
     }
 
     render() {
@@ -53,16 +53,13 @@ class App extends Component {
                 }
             `}</style>
                     <div className='content'>
-                        {this.props.posts.map((post, i) => {
+                        {this.props.jobs.map((job, i) => {
                             return (
-                                <div className='post' key={i}>
+                                <div className='job' key={i}>
                                     <div className='row'>
-                                        <div className='col-12 col-md-4'>
-                                            <img className='img-fluid' src={post.image.secure_url} />
-                                        </div>
                                         <div className='col-12 col-md-8'>
-                                            <h2>{post.title}</h2>
-                                            <div dangerouslySetInnerHTML={{ __html: post.content.brief }}></div>
+                                            <h2>{job.title}</h2>
+                                            <h3>{job.company}</h3>
                                         </div>
                                     </div>
                                 </div>
